@@ -3,11 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Badge from '../components/Badge.astro';
 import LinkedinIcon from '../components/icons/Linkedin.astro'
+import SocialPill from '../components/icons/SocialPill.astro';
+import GitHub from '../components/icons/GitHub.astro';
+import Email from '../components/icons/Email.astro';
+import Experiencia from '../components/Experiencia.astro'
+import ExperienciaIcon from '../components/icons/ExperienciaIcon.astro'
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Portafolio dev Yovanis Bossio">
 	<main>
-		<section class="w-full lg:w-[740px] mx-auto py-44">
+		<section class="w-full lg:w-[740px] mx-auto py-44 pb-25">
 			<h1 class="text-black text-5xl font-bold flex flex-row gap-x-2 pb-10">Hola soy Yovanis,
 				 <a 
 				 href="https://www.linkedin.com/in/yovanis-manuel-bossio-lambra%C3%B1o-2796b8206"
@@ -22,19 +27,27 @@ import LinkedinIcon from '../components/icons/Linkedin.astro'
 				Especializado en Desarrollar aplicaciones webs únicas 
 			</h2>
 
-			<ul>
-				<li>
-					<a href="https://www.linkedin.com/in/yovanis-manuel-bossio-lambra%C3%B1o-2796b8206"> 
+			<nav class="flex gap-x-2 mt-8">
+				<SocialPill href="https://www.linkedin.com/in/yovanis-manuel-bossio-lambra%C3%B1o-2796b8206"> 
+					<LinkedinIcon  class="w-6 h-6"/>Linkedin
+				</SocialPill>
 
-					<LinkedinIcon  class="w-6 h-6"/>
-					
-			
-						
-					Linkedin</a>
-				</li>
+				<SocialPill href="https://github.com/Ymbossio"> 
+					<GitHub  class="w-6 h-6"/>Github
+				</SocialPill>
+
+				<SocialPill href=""> 
+					<Email  class="w-6 h-6"/>Yovanis2001@gmail.com
+				</SocialPill>
 			</ul>
+		</section>
 
-
+		<section id="Experiencia" class="w-full lg:w-[740px] mx-auto py-44">
+			<h2 class="text-4xl font-semibold mb-7 flex gap-x-3 items-center">
+				<ExperienciaIcon  class="size-10"/>
+				Experiencia Laboral
+			</h2>
+			<Experiencia />
 		</section>
 	</main>
 </Layout>
