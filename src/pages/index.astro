@@ -8,6 +8,9 @@ import GitHub from '../components/icons/GitHub.astro';
 import Email from '../components/icons/Email.astro';
 import Experiencia from '../components/Experiencia.astro'
 import ExperienciaIcon from '../components/icons/ExperienciaIcon.astro'
+import SobreMiIcon from '../components/icons/SobreMi-Icon.astro';
+import SobreMi from '../components/SobreMi.astro';
+import Footer from '../components/Footer.astro'
 ---
 
 <Layout title="Portafolio dev Yovanis Bossio">
@@ -42,12 +45,26 @@ import ExperienciaIcon from '../components/icons/ExperienciaIcon.astro'
 			</ul>
 		</section>
 
-		<section id="Experiencia" class="w-full lg:w-[740px] mx-auto py-44">
+		<section id="Experiencia" class="w-full lg:w-[740px] pb-24 mx-auto">
 			<h2 class="text-4xl font-semibold mb-7 flex gap-x-3 items-center">
 				<ExperienciaIcon  class="size-10"/>
 				Experiencia Laboral
 			</h2>
 			<Experiencia />
 		</section>
+
+		<section id="Sobre-mi" class="w-full lg:w-[740px] pb-25 py-35 mx-auto">
+			<h2 class="text-4xl font-semibold mb-7 flex gap-x-3 items-center">
+				<SobreMiIcon  class="size-10"/>
+				Sobre Mí
+			</h2>
+			<SobreMi />
+
+			<footer class="w-full lg:w-[740px] mt-10 mx-auto">
+				<Footer />
+			</section>
+		</section>
+
+
 	</main>
 </Layout>
