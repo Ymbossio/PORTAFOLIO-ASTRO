@@ -14,9 +14,9 @@ import Footer from '../components/Footer.astro'
 ---
 
 <Layout title="Portafolio dev Yovanis Bossio">
-	<main>
+	<main class="px-4">
 		<section class="w-full lg:w-[740px] mx-auto py-44 pb-25">
-			<h1 class="text-black text-5xl font-bold flex flex-row gap-x-2 pb-10">Hola soy Yovanis,
+			<h1 class="text-black text-xl lg:text-3xl md:text-4xl font-bold flex flex-row gap-x-2 pb-6 lg:pb-10">Hola soy Yovanis,
 				 <a 
 				 href="https://www.linkedin.com/in/yovanis-manuel-bossio-lambra%C3%B1o-2796b8206"
 				 target="_blank"
@@ -25,22 +25,22 @@ import Footer from '../components/Footer.astro'
 				</a>
 			</h1>
 			
-			<h2 class="text-2xl opacity-80 text-wrap">
+			<h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[900px]">
 				+1 año de experiencia. Desarrollador webs de Barranquilla, Atlántico. 
 				Especializado en Desarrollar aplicaciones webs únicas 
 			</h2>
 
-			<nav class="flex gap-x-2 mt-8">
+			<nav class="flex gap-4 mt-8 flex-wrap">
 				<SocialPill href="https://www.linkedin.com/in/yovanis-manuel-bossio-lambra%C3%B1o-2796b8206"> 
-					<LinkedinIcon  class="w-6 h-6"/>Linkedin
+					<LinkedinIcon  class="size-4  md:size-6"/>Linkedin
 				</SocialPill>
 
 				<SocialPill href="https://github.com/Ymbossio"> 
-					<GitHub  class="w-6 h-6"/>Github
+					<GitHub  class="size-4 md:size-6"/>Github
 				</SocialPill>
 
-				<SocialPill href=""> 
-					<Email  class="w-6 h-6"/>Yovanis2001@gmail.com
+				<SocialPill href="mailto:Yovanis2001@gmail.com"> 
+					<Email  class="size-4 md:size-6"/>Yovanis2001@gmail.com
 				</SocialPill>
 			</ul>
 		</section>
