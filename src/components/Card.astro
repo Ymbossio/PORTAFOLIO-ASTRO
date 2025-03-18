@@ -1,61 +1,49 @@
----
-interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
 
-const { href, title, body } = Astro.props;
----
+<main class="flex justify-center gap-4 mt-2 bg-whit mb-40 text-black dark:bg-black dark:text-white">
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
-<style>
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-	}
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
-	}
-</style>
+	<div class="left-12 min-h-[400px] min-w-[300px] flex flex-col relative">
+        
+		<h1 class="text-6xl font-bold mt-40 flex py-1">Hola, soy</h1>
+        <h1 class="text-6xl font-bold py-1">Yovanis</h1>
+
+		<p class="text-2xl opacity-60"> Transformo ideas en soluciones digitales</p>
+
+		<div class="text-lg d-block mt-4 flex gap-2 py-1 ml-2">
+			<button class="bg-black text-white p-3 rounded-md hover:button hover:scale-110 transition duration-500">Sobre mí</button>
+			<button class="bg-black text-white p-3 rounded-md hover:button hover:scale-110 transition duration-500">Proyectos</button>
+		</div>
+
+
+		<div class="mt-2 flex space-x-8">
+			<div class="tex-center">
+				<h2 class="font-bold text-2xl text-center">+2</h2>
+				<span class="opacity-60">Experiencia</span>
+			</div>
+
+			<div class="tex-center">
+				<h2 class="font-bold text-2xl text-center">23</h2>
+				<span class="opacity-60">Edad</span>
+			</div>
+
+			<div class="tex-center">
+				<h2 class="font-bold text-2xl text-center">6</h2>
+				<span class="opacity-60">Tecnologías </span>
+			</div>
+
+		</div>
+			
+
+
+    </div>
+
+
+    <div class="p-4 text-center left-10  min-h-[400px] min-w-[400px] flex flex-col relative">
+		
+		<img src="/public/brand-javascript.png" alt="brand javascript" class="size-8 md:size-8 absolute top-40 right-12"/>
+		<img src="/public/brand-nodejs.png" alt="brand nodejs" class="size-8 md:size-8 absolute top-80 right-4"/>
+		<img src="/public/brand-php.png" alt="brand php" class="size-8 md:size-8 absolute top-60 right-22"/>
+		
+		<img src="/public/users-vector.png" class="size-700 md:size-400 absolute bottom-0 left-1/2 -translate-x-1/2" alt="falta la imagen está es de prueba"/>
+    </div>
+
+</main>
