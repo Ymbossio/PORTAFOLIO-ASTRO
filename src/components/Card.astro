@@ -1,49 +1,249 @@
+---
+import { useTranslations } from '../i18n/translations';
 
-<main class="flex justify-center gap-4 mt-2 bg-whit mb-40 text-black dark:bg-black dark:text-white">
+interface Props {
+  lang: 'es' | 'en';
+}
 
-	<div class="left-12 min-h-[400px] min-w-[300px] flex flex-col relative">
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center min-h-[70vh] py-8 md:py-12">
+  <!-- Content (Left Column) -->
+  <div class="md:col-span-7 flex flex-col items-start space-y-6 md:space-y-8">
+    <!-- Status Badge -->
+    <div class="inline-flex items-center gap-x-2.5 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-950/20 text-blue-400 text-xs md:text-sm font-semibold shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+      </span>
+      {t('hero.badge')}
+    </div>
+
+    <!-- Title and Subtitle -->
+    <div class="space-y-4">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        {t('hero.greeting')}{' '}
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-indigo-400 to-cyan-400 block mt-2 drop-shadow-sm">
+          {t('hero.name')} Bossio
+        </span>
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl text-slate-300 max-w-lg leading-relaxed font-light">
+        {t('hero.subtitle')}
+      </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-wrap gap-4 w-full sm:w-auto">
+      <a 
+        href="#Sobre-mi" 
+        class="flex-1 sm:flex-none inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition duration-300 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] active:scale-95"
+      >
+        {t('hero.button.sobremi')}
+      </a>
+      <a 
+        href="#Proyectos" 
+        class="flex-1 sm:flex-none inline-flex items-center justify-center bg-slate-900/50 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 font-semibold px-6 py-3 rounded-xl transition duration-300 active:scale-95"
+      >
+        {t('hero.button.proyectos')}
+      </a>
+    </div>
+
+    <!-- Stats Panel -->
+    <div class="grid grid-cols-3 gap-6 w-full max-w-md pt-6 md:pt-8 border-t border-slate-900">
+      <div class="text-left">
+        <h2 class="font-extrabold text-2xl md:text-3xl text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">
+          {t('hero.stat.exp')}
+        </h2>
+        <span class="text-xs text-slate-400 font-medium block mt-1 leading-snug">{t('hero.stat.exp_lbl')}</span>
+      </div>
+
+      <div class="text-left border-l border-slate-900 pl-6">
+        <h2 class="font-extrabold text-2xl md:text-3xl text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">
+          {t('hero.stat.age')}
+        </h2>
+        <span class="text-xs text-slate-400 font-medium block mt-1 leading-snug">{t('hero.stat.age_lbl')}</span>
+      </div>
+
+      <div class="text-left border-l border-slate-900 pl-6">
+        <h2 class="font-extrabold text-2xl md:text-3xl text-white bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">
+          {t('hero.stat.tech')}
+        </h2>
+        <span class="text-xs text-slate-400 font-medium block mt-1 leading-snug">{t('hero.stat.tech_lbl')}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Terminal (Right Column) -->
+  <div class="md:col-span-5 relative flex justify-center items-center py-6">
+    <!-- Back Glow Effect -->
+    <div class="absolute -z-10 w-64 h-64 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"></div>
+
+    <!-- Floating Logo Badges -->
+    <img 
+      src="/brand-javascript.png" 
+      alt="JavaScript Logo" 
+      class="size-10 absolute -top-4 left-6 floating pointer-events-none opacity-80"
+    />
+    <img 
+      src="/brand-nodejs.png" 
+      alt="NodeJS Logo" 
+      class="size-10 absolute bottom-4 right-2 floating-delayed pointer-events-none opacity-80"
+    />
+    <img 
+      src="/brand-php.png" 
+      alt="PHP Logo" 
+      class="size-10 absolute bottom-12 -left-4 floating pointer-events-none opacity-80"
+    />
+
+    <!-- Interactive Terminal Window -->
+    <div 
+      id="terminal-window" 
+      data-welcome={t('cli.welcome')}
+      data-notfound={t('cli.not_found')}
+      data-help={t('cli.help')}
+      data-about={t('cli.about_text')}
+      data-skills={t('cli.skills_text')}
+      data-projects={t('cli.projects_text')}
+      data-contact={t('cli.contact_text')}
+      class="w-full max-w-sm rounded-2xl border border-slate-800/80 bg-slate-950/90 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-sm overflow-hidden font-mono text-xs md:text-sm cursor-text flex flex-col h-[280px]"
+    >
+      <!-- Title Bar -->
+      <div class="bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-slate-900/60 flex-shrink-0 select-none">
+        <div class="flex items-center gap-x-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+        </div>
+        <span class="text-slate-400 text-[10px] md:text-xs">guest@yovanis-bossio: ~</span>
+        <div class="w-4"></div>
+      </div>
+
+      <!-- Console Body -->
+      <div id="terminal-body" class="p-4 flex-grow overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+        <div class="text-slate-500 italic select-none">Yovanis Bossio OS v1.0.0</div>
         
-		<h1 class="text-6xl font-bold mt-40 flex py-1">Hola, soy</h1>
-        <h1 class="text-6xl font-bold py-1">Yovanis</h1>
+        <div id="terminal-history" class="space-y-1.5 text-slate-300">
+          <!-- Commands history will be rendered dynamically -->
+        </div>
 
-		<p class="text-2xl opacity-60"> Transformo ideas en soluciones digitales</p>
-
-		<div class="text-lg d-block mt-4 flex gap-2 py-1 ml-2">
-			<button class="bg-black text-white p-3 rounded-md hover:button hover:scale-110 transition duration-500">Sobre mí</button>
-			<button class="bg-black text-white p-3 rounded-md hover:button hover:scale-110 transition duration-500">Proyectos</button>
-		</div>
-
-
-		<div class="mt-2 flex space-x-8">
-			<div class="tex-center">
-				<h2 class="font-bold text-2xl text-center">+2</h2>
-				<span class="opacity-60">Experiencia</span>
-			</div>
-
-			<div class="tex-center">
-				<h2 class="font-bold text-2xl text-center">23</h2>
-				<span class="opacity-60">Edad</span>
-			</div>
-
-			<div class="tex-center">
-				<h2 class="font-bold text-2xl text-center">6</h2>
-				<span class="opacity-60">Tecnologías </span>
-			</div>
-
-		</div>
-			
-
-
+        <!-- CLI Prompt Line -->
+        <div class="flex items-center gap-x-1.5 pt-1">
+          <span class="text-blue-500 shrink-0 select-none">guest@yb:~$</span>
+          <input 
+            type="text" 
+            id="terminal-input" 
+            class="bg-transparent border-none outline-none ring-0 focus:ring-0 focus:border-none focus:outline-none p-0 m-0 text-slate-100 flex-grow text-xs md:text-sm font-mono"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<script>
+  const terminalWindow = document.getElementById('terminal-window');
+  const inputEl = document.getElementById('terminal-input') as HTMLInputElement;
+  const historyEl = document.getElementById('terminal-history');
+  const bodyEl = document.getElementById('terminal-body');
 
-    <div class="p-4 text-center left-10  min-h-[400px] min-w-[400px] flex flex-col relative">
-		
-		<img src="/brand-javascript.png" alt="brand javascript" class="size-8 md:size-8 absolute top-40 right-12"/>
-		<img src="/brand-nodejs.png" alt="brand nodejs" class="size-8 md:size-8 absolute top-80 right-4"/>
-		<img src="/brand-php.png" alt="brand php" class="size-8 md:size-8 absolute top-60 right-22"/>
-		
-		<img src="/users-vector.png" class="size-700 md:size-400 absolute bottom-0 left-1/2 -translate-x-1/2" alt="falta la imagen está es de prueba"/>
-    </div>
+  if (terminalWindow && inputEl && historyEl && bodyEl) {
+    const welcome = terminalWindow.dataset.welcome || '';
+    const notfound = terminalWindow.dataset.notfound || '';
+    const help = terminalWindow.dataset.help || '';
+    const about = terminalWindow.dataset.about || '';
+    const skills = terminalWindow.dataset.skills || '';
+    const projects = terminalWindow.dataset.projects || '';
+    const contact = terminalWindow.dataset.contact || '';
 
-</main>
+    // Helper to print line to terminal
+    const printLine = (text: string, isCommand = false, isError = false) => {
+      const line = document.createElement('div');
+      if (isCommand) {
+        line.innerHTML = `<span class="text-blue-500 select-none">guest@yb:~$</span> <span class="text-slate-200">${text}</span>`;
+      } else if (isError) {
+        line.innerHTML = `<span class="text-red-400">${text}</span>`;
+      } else {
+        line.innerHTML = `<span class="text-slate-350">${text}</span>`;
+      }
+      historyEl.appendChild(line);
+      bodyEl.scrollTop = bodyEl.scrollHeight;
+    };
+
+    // Print welcome greeting initially
+    printLine(welcome);
+
+    // Auto focus terminal input on click inside the window
+    terminalWindow.addEventListener('click', () => {
+      inputEl.focus();
+    });
+
+    // Command parser
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const rawCmd = inputEl.value;
+        const value = rawCmd.trim().toLowerCase();
+        
+        if (value.length > 0) {
+          // 1. Echo command in history
+          printLine(rawCmd, true);
+
+          // 2. Process command
+          if (value === 'help') {
+            printLine(help);
+          } else if (value === 'about') {
+            printLine(about);
+          } else if (value === 'skills') {
+            printLine(skills);
+          } else if (value === 'projects') {
+            printLine(projects);
+          } else if (value === 'contact') {
+            printLine(contact);
+          } else if (value === 'clear') {
+            historyEl.innerHTML = '';
+          } else {
+            printLine(notfound, false, true);
+          }
+        }
+        
+        // Reset input and keep scroll in view
+        inputEl.value = '';
+        bodyEl.scrollTop = bodyEl.scrollHeight;
+      }
+    });
+  }
+</script>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+  .floating-delayed {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  /* Webkit custom scrollbar styling */
+  #terminal-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  #terminal-body::-webkit-scrollbar-thumb {
+    background-color: rgb(30, 41, 59);
+    border-radius: 4px;
+  }
+  #terminal-body::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+</style>
