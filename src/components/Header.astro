@@ -1,32 +1,66 @@
-<header class="flex justify-between 
-        border 
-        border-solid 
-        border-gray-400 
-        items-center
-        rounded-xl
-        mt-15
-        h-22
-        mx-auto 
-        bg-white 
-        text-black 
-        dark:bg-black 
-        dark:text-white"
-    >
-    <div class="text-2xl font-bold p-2 text-center">Yovanis</div>
+---
+import { useTranslations } from '../i18n/translations';
 
-    <div class="border-l border-gray-400 h-14  mx-6"></div>
-    
-    <nav class="flex space-x-9 text-gray-700">
-        <a href="#Top" class="hover:text-blue-800 hover:scale-125 transition duration-300">Inicio</a>
-        <a href="#Experiencia" class="hover:text-blue-800 hover:scale-125 transition duration-300">Experiencia</a>
-        <a href="#Proyectos" class="hover:text-blue-800 hover:scale-125 transition duration-300">Proyectos</a>
-        <a href="#Sobre-mi" class="hover:text-blue-800 hover:scale-125 transition duration-300">Sobre Mí</a>
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<header class="sticky top-4 z-50 max-w-4xl mx-auto px-4 w-full">
+  <div class="backdrop-blur-md bg-slate-950/70 border border-slate-800/80 rounded-2xl h-16 px-4 md:px-6 flex items-center justify-between shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+    <!-- Logo -->
+    <a href="#inicio" class="text-xl font-bold tracking-tight hover:scale-105 transition text-white">
+      {t('nav.name')}<span class="text-blue-500">.</span>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="hidden md:flex items-center gap-x-6 lg:gap-x-8 text-sm font-medium">
+      <a href="#inicio" class="text-slate-300 hover:text-blue-400 transition relative py-1 group">
+        {t('nav.inicio')}
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#Experiencia" class="text-slate-300 hover:text-blue-400 transition relative py-1 group">
+        {t('nav.experiencia')}
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#Proyectos" class="text-slate-300 hover:text-blue-400 transition relative py-1 group">
+        {t('nav.proyectos')}
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#Sobre-mi" class="text-slate-300 hover:text-blue-400 transition relative py-1 group">
+        {t('nav.sobremi')}
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+      </a>
     </nav>
 
-    <div class="border-l border-gray-400 h-14 mx-6"></div>
+    <!-- Language Selector & CTA -->
+    <div class="flex items-center gap-x-4">
+      <!-- Language Pill -->
+      <div class="flex items-center bg-slate-900/90 border border-slate-800 p-0.5 rounded-full">
+        <a 
+          href="/" 
+          class={`px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${lang === 'es' ? 'bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.4)]' : 'text-slate-400 hover:text-slate-100'}`}
+        >
+          ES
+        </a>
+        <a 
+          href="/en/" 
+          class={`px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${lang === 'en' ? 'bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.4)]' : 'text-slate-400 hover:text-slate-100'}`}
+        >
+          EN
+        </a>
+      </div>
 
-    <div class="text-lg font-bold p-2">
-        <button class="bg-black text-white p-3 rounded-xl">Contáctame</button>
+      <!-- CTA Contact button -->
+      <a 
+        href="#Contacto" 
+        class="border border-blue-500/30 bg-blue-950/20 text-blue-400 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition duration-300 shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:border-transparent"
+      >
+        {t('nav.contacto')}
+      </a>
     </div>
-
+  </div>
 </header>
