@@ -93,7 +93,8 @@ export const ui = {
         title: 'Autenticación JWT',
         description: 'Módulo de autenticación seguro que implementa JSON Web Tokens (JWT), Node.js, Express y base de datos con contraseñas encriptadas.',
         image: '/login.PNG',
-        github: 'https://github.com/Ymbossio/AUTH---JWT---NODEJS---EXPRESS'
+        github: 'https://github.com/Ymbossio/AUTH---JWT---NODEJS---EXPRESS',
+        link: ''
       }
     ],
 
@@ -209,7 +210,8 @@ export const ui = {
         title: 'JWT Authentication',
         description: 'A secure user authentication flow implementing JSON Web Tokens (JWT), Node.js, Express, and databases with encrypted password hashing.',
         image: '/login.PNG',
-        github: 'https://github.com/Ymbossio/AUTH---JWT---NODEJS---EXPRESS'
+        github: 'https://github.com/Ymbossio/AUTH---JWT---NODEJS---EXPRESS',
+        link: ''
       }
     ],
 
