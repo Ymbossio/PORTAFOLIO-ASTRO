@@ -1,0 +1,52 @@
+---
+import { skillCategories } from '../i18n/translations';
+
+interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+const categories = skillCategories[lang];
+---
+
+<div class="space-y-8 md:space-y-12">
+  {categories.map((category) => (
+    <div class="space-y-4">
+      <!-- Category Title -->
+      <h3 class="text-sm md:text-base font-bold text-slate-400 select-none border-l-2 border-blue-500 pl-3 tracking-wider uppercase">
+        {category.name}
+      </h3>
+      
+      <!-- Skills Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+        {category.skills.map((skill) => (
+          <div 
+            class="skill-card group relative p-4 rounded-2xl bg-slate-900/30 border border-slate-900/60 hover:bg-slate-900/50 flex flex-col items-center justify-center text-center gap-2 select-none overflow-hidden transition-all duration-300 cursor-default"
+            style={`--glow-color: ${skill.color};`}
+          >
+            <!-- Radial light flare -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--glow-color)_0%,transparent_70%)] opacity-0 group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none"></div>
+            
+            <!-- Neon Dot -->
+            <div 
+              class="w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125" 
+              style={`background-color: ${skill.color}; box-shadow: 0 0 10px ${skill.color}, 0 0 20px ${skill.color};`}
+            ></div>
+            
+            <!-- Tech Name -->
+            <span class="text-xs md:text-sm font-semibold text-slate-350 group-hover:text-white transition-colors duration-300">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .skill-card:hover {
+    box-shadow: 0 0 20px -8px var(--glow-color);
+    border-color: rgba(255, 255, 255, 0.15); /* Keep border subtle */
+  }
+</style>
